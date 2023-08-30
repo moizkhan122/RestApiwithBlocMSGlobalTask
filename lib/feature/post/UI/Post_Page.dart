@@ -20,10 +20,6 @@ class _Post_PageState extends State<Post_Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text("Post API request",style: TextStyle(fontSize: 20,color: Colors.blue),),
-      ),
       body: BlocConsumer<PostBlocBloc, PostBlocState>(
         bloc: postBloc,
         listenWhen: (previous, current) => current is PostBlocActionState,

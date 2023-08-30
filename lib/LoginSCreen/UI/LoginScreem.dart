@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/feature/post/UI/Post_Page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../feature/TabbarView/UI/TabbarUI.dart';
 import '../bloc/login_screen_bloc.dart';
 import '../bloc/login_screen_event.dart';
 import '../bloc/login_screen_state.dart';
@@ -17,6 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
   AuthBloc authBloc = AuthBloc();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,9 +27,11 @@ class _LoginScreenState extends State<LoginScreen> {
         listener: (context, state) {          
           if (state is AuthSuccess) {
             Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const Post_Page()),
-            );
+            context,
+            MaterialPageRoute(builder: (context) {
+              return TabScreen();
+            }),
+          );
           } else if (state is AuthFailure) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content:Text(state.error))
